@@ -1,0 +1,39 @@
+<!--
+  COMO USAR:
+  1. No painel do Blogger vá a Páginas > Nova página > HTML.
+  2. Cole todo este código.
+  3. Título da página: Contacto (o Blogger vai gerar o endereço /p/contacto.html,
+     que já é o link usado pelo menu e pelo footer do tema).
+  4. Antes de publicar, configure o endpoint do formulário — ver README.txt,
+     secção "COMO CONFIGURAR O FORMULÁRIO DE CONTACTO".
+-->
+<div class="legal-page">
+  <h1>Contacto</h1>
+  <p>Tem uma sugestão de receita, uma dúvida sobre um passo a passo ou uma proposta de parceria? Escreva-nos através do formulário abaixo ou pelo número indicado.</p>
+
+  <form class="contact-form panel" id="cyber-contact-form" data-endpoint="https://formspree.io/f/SEU_ID_FORMSPREE">
+    <div>
+      <label for="cf-name">Nome</label>
+      <input id="cf-name" name="name" type="text" required="required"/>
+    </div>
+    <div>
+      <label for="cf-email">Email</label>
+      <input id="cf-email" name="email" type="email" required="required"/>
+    </div>
+    <div>
+      <label for="cf-subject">Assunto</label>
+      <input id="cf-subject" name="subject" type="text" required="required"/>
+    </div>
+    <div>
+      <label for="cf-message">Mensagem</label>
+      <textarea id="cf-message" name="message" rows="5" required="required"></textarea>
+    </div>
+    <button type="submit">Enviar</button>
+    <div class="form-status" id="form-status"></div>
+  </form>
+
+  <div class="contact-info">
+    <p>&#128222; 863582790</p>
+    <p>Respondemos, em regra, dentro de 2 a 3 dias úteis.</p>
+  </div>
+</div>

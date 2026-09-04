@@ -1,0 +1,987 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='1.0.0' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+  <meta content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5' name='viewport'/>
+  <title><data:blog.pageTitle/></title>
+  <b:include data='blog' name='all-head-content'/>
+  <b:skin><![CDATA[
+/* ============================================
+   CYBER CULINÁRIA - Tema Cyber Dark
+   Blogger Template - Gastronomia & Culinária
+   ============================================ */
+
+:root {
+  --bg-deep: #050508;
+  --bg-dark: #0A0B10;
+  --bg-card: #12131A;
+  --bg-card-hover: #1A1B24;
+  --neon-purple: #A855F7;
+  --neon-blue: #22D3EE;
+  --neon-green: #4ADE80;
+  --neon-pink: #F472B6;
+  --text-primary: #E2E8F0;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --border-glow: rgba(168, 85, 247, 0.35);
+  --shadow-neon: 0 0 15px rgba(168, 85, 247, 0.4);
+  --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --radius: 12px;
+  --transition: 0.3s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Canvas de partículas */
+#particles-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Orbs brilhantes nas margens */
+.glow-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.45;
+  z-index: 1;
+  pointer-events: none;
+  animation: orbPulse 6s ease-in-out infinite;
+}
+.orb-1 { width: 180px; height: 180px; background: var(--neon-purple); top: 10%; left: -60px; animation-delay: 0s; }
+.orb-2 { width: 140px; height: 140px; background: var(--neon-blue); top: 45%; right: -50px; animation-delay: 2s; }
+.orb-3 { width: 120px; height: 120px; background: var(--neon-green); bottom: 20%; left: -40px; animation-delay: 4s; }
+.orb-4 { width: 100px; height: 100px; background: var(--neon-pink); top: 70%; right: -30px; animation-delay: 1.5s; }
+
+@keyframes orbPulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(1.15); }
+}
+
+/* Layout principal */
+.site-wrapper {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px 80px;
+}
+
+/* ===== HEADER TICKER (Marquee superior) ===== */
+.header-ticker {
+  background: linear-gradient(90deg, #0A0B10, #1A0A2E, #0A0B10);
+  border-bottom: 1px solid var(--border-glow);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 8px 0;
+  position: relative;
+  z-index: 10;
+}
+.header-ticker .ticker-track {
+  display: inline-block;
+  animation: marquee 40s linear infinite;
+  padding-left: 100%;
+}
+.header-ticker span {
+  color: var(--neon-blue);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-right: 48px;
+}
+.header-ticker span::before {
+  content: "◆ ";
+  color: var(--neon-purple);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+  margin-bottom: 24px;
+}
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+.logo span { color: var(--neon-green); -webkit-text-fill-color: var(--neon-green); }
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color var(--transition);
+  position: relative;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--neon-blue);
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--neon-purple);
+  transition: width var(--transition);
+}
+.nav-links a:hover::after { width: 100%; }
+
+/* ===== HERO / FEATURED ===== */
+.hero {
+  text-align: center;
+  padding: 40px 20px 32px;
+  margin-bottom: 32px;
+  background: linear-gradient(180deg, rgba(168,85,247,0.08) 0%, transparent 100%);
+  border-radius: var(--radius);
+  border: 1px solid rgba(168,85,247,0.15);
+}
+.hero h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue), var(--neon-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin: 0 auto 20px;
+  font-size: 1.05rem;
+}
+
+/* ===== GRID DE POSTS ===== */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.post-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(168,85,247,0.2);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+.post-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-neon);
+  border-color: var(--neon-purple);
+}
+
+.post-card .thumb-wrap {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: #0D0E14;
+}
+.post-card .thumb-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: opacity 0.8s ease, transform 0.5s ease;
+}
+.post-card:hover .thumb-wrap img { transform: scale(1.05); }
+
+/* Galeria dinâmica - imagens que alternam */
+.rotating-images {
+  position: absolute;
+  inset: 0;
+}
+.rotating-images img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.rotating-images img.active { opacity: 1; }
+
+.post-card .card-body {
+  padding: 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.post-card .labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.post-card .label {
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: rgba(168,85,247,0.15);
+  color: var(--neon-purple);
+  border: 1px solid rgba(168,85,247,0.3);
+  text-decoration: none;
+}
+.post-card h2, .post-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+.post-card h2 a, .post-card h3 a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.post-card h2 a:hover, .post-card h3 a:hover { color: var(--neon-blue); }
+
+.post-card .snippet {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.post-card .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: auto;
+}
+.post-card .read-more {
+  color: var(--neon-blue);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.post-card .read-more:hover { color: var(--neon-purple); }
+
+/* ===== PÁGINA DE POST (ITEM) ===== */
+.item-page .post {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  border: 1px solid rgba(168,85,247,0.2);
+  max-width: 820px;
+  margin: 0 auto 40px;
+}
+.item-page .post-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  margin-bottom: 16px;
+  background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.item-page .post-meta {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(168,85,247,0.15);
+}
+.item-page .post-body {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+}
+.item-page .post-body h2,
+.item-page .post-body h3 {
+  color: var(--neon-blue);
+  margin: 28px 0 12px;
+}
+.item-page .post-body ul,
+.item-page .post-body ol {
+  margin: 12px 0 20px 24px;
+}
+.item-page .post-body li { margin-bottom: 6px; }
+.item-page .post-body img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 16px 0;
+  border: 1px solid rgba(168,85,247,0.2);
+}
+.item-page .post-body iframe {
+  max-width: 100%;
+  border-radius: 8px;
+  border: 2px solid var(--neon-purple);
+  box-shadow: 0 0 20px rgba(168,85,247,0.25);
+  margin: 20px 0;
+}
+
+/* Bloco de receita estilizado */
+.recipe-box {
+  background: rgba(10,11,16,0.8);
+  border: 1px solid var(--neon-purple);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin: 24px 0;
+}
+.recipe-box h3 {
+  color: var(--neon-green) !important;
+  margin-top: 0 !important;
+}
+.recipe-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.recipe-meta span {
+  background: rgba(34,211,238,0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(34,211,238,0.3);
+}
+
+/* ===== PÁGINAS ESTÁTICAS ===== */
+.static-page {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+  border: 1px solid rgba(168,85,247,0.2);
+  max-width: 800px;
+  margin: 0 auto 40px;
+}
+.static-page h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--neon-purple);
+}
+.static-page h2 {
+  color: var(--neon-blue);
+  margin: 28px 0 12px;
+  font-size: 1.3rem;
+}
+.static-page p, .static-page li {
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+.static-page ul { margin-left: 24px; margin-bottom: 16px; }
+
+/* Formulário de contacto */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+.contact-form label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  display: block;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg-dark);
+  border: 1px solid rgba(168,85,247,0.35);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 0 3px rgba(34,211,238,0.2);
+}
+.contact-form button {
+  align-self: flex-start;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--neon-purple), #7C3AED);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.contact-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(168,85,247,0.45);
+}
+.phone-highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(74,222,128,0.12);
+  border: 1px solid rgba(74,222,128,0.4);
+  padding: 10px 18px;
+  border-radius: 8px;
+  color: var(--neon-green);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin: 16px 0;
+  text-decoration: none;
+}
+
+/* ===== FOOTER TICKER ===== */
+.footer-ticker {
+  background: linear-gradient(90deg, #0A0B10, #0A1A14, #0A0B10);
+  border-top: 1px solid rgba(74,222,128,0.3);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 8px 0;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 20;
+}
+.footer-ticker .ticker-track {
+  display: inline-block;
+  animation: marquee 50s linear infinite;
+  padding-left: 100%;
+}
+.footer-ticker span {
+  color: var(--neon-green);
+  font-size: 0.85rem;
+  margin-right: 40px;
+}
+.footer-ticker span::before {
+  content: "● ";
+  color: var(--neon-blue);
+}
+
+/* Footer principal */
+.main-footer {
+  text-align: center;
+  padding: 32px 16px 60px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(168,85,247,0.15);
+  margin-top: 40px;
+}
+.main-footer a {
+  color: var(--neon-blue);
+  text-decoration: none;
+  margin: 0 10px;
+}
+.main-footer a:hover { color: var(--neon-purple); }
+.footer-nav {
+  margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 16px;
+}
+
+/* ===== WIDGETS & MISC ===== */
+.widget { margin-bottom: 24px; }
+.widget-title {
+  font-size: 1.1rem;
+  color: var(--neon-purple);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(168,85,247,0.25);
+}
+
+/* Labels / Categorias */
+.Label ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.Label li a {
+  display: inline-block;
+  padding: 6px 14px;
+  background: rgba(168,85,247,0.12);
+  border: 1px solid rgba(168,85,247,0.3);
+  border-radius: 20px;
+  color: var(--neon-purple);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all var(--transition);
+}
+.Label li a:hover {
+  background: rgba(168,85,247,0.25);
+  box-shadow: 0 0 12px rgba(168,85,247,0.3);
+}
+
+/* Blog pager */
+.blog-pager {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 32px 0;
+}
+.blog-pager a {
+  padding: 10px 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--neon-purple);
+  border-radius: 8px;
+  color: var(--neon-blue);
+  text-decoration: none;
+  transition: all var(--transition);
+}
+.blog-pager a:hover {
+  background: rgba(168,85,247,0.2);
+  box-shadow: var(--shadow-neon);
+}
+
+/* Loading indicator para infinite scroll */
+#infinite-loader {
+  text-align: center;
+  padding: 24px;
+  color: var(--neon-blue);
+  display: none;
+}
+#infinite-loader.visible { display: block; }
+.spinner {
+  width: 36px; height: 36px;
+  border: 3px solid rgba(168,85,247,0.2);
+  border-top-color: var(--neon-purple);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 12px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Comentários */
+.comments { margin-top: 40px; }
+.comments h3 { color: var(--neon-blue); margin-bottom: 16px; }
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .navbar { flex-direction: column; align-items: flex-start; }
+  .nav-links { gap: 8px 14px; }
+  .posts-grid { grid-template-columns: 1fr; }
+  .item-page .post, .static-page { padding: 24px 18px; }
+  .hero { padding: 28px 16px; }
+}
+
+/* Esconder elementos padrão do Blogger se necessário */
+.status-msg-wrap { display: none !important; }
+.blog-feeds { display: none; }
+
+/* ===== FIM CSS ===== */
+]]></b:skin>
+
+  <style>
+    /* Estilos adicionais inline para garantias */
+  </style>
+</head>
+
+<body expr:class='data:blog.pageType + " " + data:blog.pageName'>
+
+  <!-- Canvas de partículas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Orbs brilhantes -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <div class="glow-orb orb-3"></div>
+  <div class="glow-orb orb-4"></div>
+
+  <!-- HEADER TICKER -->
+  <div class="header-ticker">
+    <div class="ticker-track">
+      <span>Novas receitas todas as semanas • Bolos e Confeitaria atualizados</span>
+      <span>Pratos Principais com técnicas profissionais</span>
+      <span>Dicas de Chef exclusivas • Tempo de preparo real</span>
+      <span>Sobremesas irresistíveis e Acompanhamentos perfeitos</span>
+      <span>Entradas sofisticadas para impressionar</span>
+      <span>Cyber Culinária — Gastronomia com estilo</span>
+      <span>Mais de 100 receitas testadas e aprovadas</span>
+      <span>Vídeos tutoriais incorporados nas receitas selecionadas</span>
+    </div>
+  </div>
+
+  <div class="site-wrapper">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <a class="logo" expr:href='data:blog.homepageUrl'>Cyber <span>Culinária</span></a>
+      <ul class="nav-links">
+        <li><a expr:href='data:blog.homepageUrl'>Início</a></li>
+        <li><a href='/search/label/Bolos%20e%20Confeitaria'>Bolos e Confeitaria</a></li>
+        <li><a href='/search/label/Pratos%20Principais'>Pratos Principais</a></li>
+        <li><a href='/search/label/Sobremesas'>Sobremesas</a></li>
+        <li><a href='/search/label/Entradas'>Entradas</a></li>
+        <li><a href='/search/label/Acompanhamentos'>Acompanhamentos</a></li>
+        <li><a href='/search/label/Dicas%20Técnicas'>Dicas Técnicas</a></li>
+        <li><a href='/p/sobre-nos.html'>Sobre Nós</a></li>
+        <li><a href='/p/contactos.html'>Contactos</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO (apenas homepage) -->
+    <b:if cond='data:blog.pageType == "index" and data:blog.searchLabel == "" and data:blog.searchQuery == ""'>
+      <section class="hero">
+        <h1>Cyber Culinária</h1>
+        <p>Receitas reais, técnicas profissionais e paixão pela gastronomia. Explore bolos, pratos principais, sobremesas e muito mais num ambiente cyber dark.</p>
+      </section>
+    </b:if>
+
+    <!-- SECÇÃO PRINCIPAL DE POSTS -->
+    <b:section class='main' id='main' showaddelement='yes'>
+      <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2'>
+        <b:widget-settings>
+          <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+          <b:widget-setting name='style.textcolor'>#E2E8F0</b:widget-setting>
+          <b:widget-setting name='showShareButtons'>true</b:widget-setting>
+          <b:widget-setting name='showCommentLink'>true</b:widget-setting>
+          <b:widget-setting name='showAuthor'>true</b:widget-setting>
+          <b:widget-setting name='showTimestamp'>true</b:widget-setting>
+          <b:widget-setting name='showLabels'>true</b:widget-setting>
+          <b:widget-setting name='postsPerAd'>3</b:widget-setting>
+          <b:widget-setting name='style.urlcolor'>#22D3EE</b:widget-setting>
+          <b:widget-setting name='showLocation'>false</b:widget-setting>
+          <b:widget-setting name='showReactions'>false</b:widget-setting>
+          <b:widget-setting name='showBacklinks'>false</b:widget-setting>
+          <b:widget-setting name='style.linkcolor'>#A855F7</b:widget-setting>
+          <b:widget-setting name='style.unittype'>TextAndImage</b:widget-setting>
+          <b:widget-setting name='showAuthorProfile'>false</b:widget-setting>
+        </b:widget-settings>
+
+        <b:includable id='main'>
+          <b:if cond='data:blog.pageType == "index" or data:blog.pageType == "archive" or data:blog.pageType == "search"'>
+            <div class='posts-grid' id='posts-container'>
+              <b:loop values='data:posts' var='post'>
+                <b:include data='post' name='postCard'/>
+              </b:loop>
+            </div>
+            <div id='infinite-loader'>
+              <div class='spinner'></div>
+              <span>A carregar mais receitas...</span>
+            </div>
+            <b:include name='nextprev'/>
+          <b:else/>
+            <!-- Página de item ou estática -->
+            <b:loop values='data:posts' var='post'>
+              <b:include data='post' name='post'/>
+            </b:loop>
+          </b:if>
+        </b:includable>
+
+        <b:includable id='postCard' var='post'>
+          <article class='post-card'>
+            <div class='thumb-wrap'>
+              <b:if cond='data:post.firstImageUrl'>
+                <div class='rotating-images' data-rotate='true'>
+                  <img expr:src='data:post.firstImageUrl' expr:alt='data:post.title' class='active' loading='lazy'/>
+                  <!-- Imagens adicionais podem ser adicionadas via labels ou JS externo -->
+                </div>
+              <b:else/>
+                <div style='width:100%;height:100%;background:linear-gradient(135deg,#1A0A2E,#0A1A2E);display:flex;align-items:center;justify-content:center;color:#A855F7;font-size:2rem;'>🍳</div>
+              </b:if>
+            </div>
+            <div class='card-body'>
+              <b:if cond='data:post.labels'>
+                <div class='labels'>
+                  <b:loop values='data:post.labels' var='label'>
+                    <a class='label' expr:href='data:label.url'><data:label.name/></a>
+                  </b:loop>
+                </div>
+              </b:if>
+              <h2><a expr:href='data:post.url'><data:post.title/></a></h2>
+              <p class='snippet'><data:post.snippet/></p>
+              <div class='meta'>
+                <span><data:post.date/></span>
+                <a class='read-more' expr:href='data:post.url'>Ler receita →</a>
+              </div>
+            </div>
+          </article>
+        </b:includable>
+
+        <b:includable id='post' var='post'>
+          <div class='item-page'>
+            <article class='post'>
+              <h1 class='post-title'><data:post.title/></h1>
+              <div class='post-meta'>
+                <b:if cond='data:post.author'>Por <data:post.author.displayName/> • </b:if>
+                <data:post.date/>
+                <b:if cond='data:post.labels'>
+                  • 
+                  <b:loop values='data:post.labels' var='label'>
+                    <a expr:href='data:label.url' style='color:var(--neon-purple);text-decoration:none;margin-right:6px;'><data:label.name/></a>
+                  </b:loop>
+                </b:if>
+              </div>
+              <div class='post-body'>
+                <data:post.body/>
+              </div>
+              <b:if cond='data:post.includeShareButtons'>
+                <div style='margin-top:24px;'>
+                  <b:include data='post' name='shareButtons'/>
+                </div>
+              </b:if>
+              <b:if cond='data:post.allowComments'>
+                <div class='comments'>
+                  <b:include data='post' name='comment_picker'/>
+                </div>
+              </b:if>
+            </article>
+          </div>
+        </b:includable>
+
+        <b:includable id='nextprev'>
+          <div class='blog-pager' id='blog-pager'>
+            <b:if cond='data:newerPageUrl'>
+              <a class='blog-pager-newer-link' expr:href='data:newerPageUrl'>← Mais recentes</a>
+            </b:if>
+            <b:if cond='data:olderPageUrl'>
+              <a class='blog-pager-older-link' expr:href='data:olderPageUrl' id='older-link'>Mais antigas →</a>
+            </b:if>
+          </div>
+        </b:includable>
+
+        <b:includable id='shareButtons'>
+          <!-- Botões de partilha padrão do Blogger -->
+        </b:includable>
+
+        <b:includable id='comment_picker'>
+          <b:include data='post' name='comments'/>
+        </b:includable>
+
+        <b:includable id='comments'>
+          <div class='comments'>
+            <a name='comments'/>
+            <h3>Comentários</h3>
+            <b:if cond='data:post.numComments == 0'>
+              <p style='color:var(--text-muted);'>Seja o primeiro a comentar esta receita.</p>
+            </b:if>
+            <div id='comments-block'>
+              <b:loop values='data:post.comments' var='comment'>
+                <div class='comment' style='background:var(--bg-dark);padding:14px;border-radius:8px;margin-bottom:12px;border:1px solid rgba(168,85,247,0.15);'>
+                  <strong style='color:var(--neon-blue);'><data:comment.author/></strong>
+                  <span style='color:var(--text-muted);font-size:0.85rem;margin-left:8px;'><data:comment.timestamp/></span>
+                  <div style='margin-top:8px;'><data:comment.body/></div>
+                </div>
+              </b:loop>
+            </div>
+          </div>
+        </b:includable>
+      </b:widget>
+    </b:section>
+
+    <!-- SIDEBAR (opcional) -->
+    <b:section class='sidebar' id='sidebar' showaddelement='yes' maxwidgets='6'>
+      <b:widget id='Label1' locked='false' title='Categorias' type='Label' version='2'>
+        <b:widget-settings>
+          <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
+          <b:widget-setting name='display'>LIST</b:widget-setting>
+          <b:widget-setting name='selectedLabelsList'/>
+          <b:widget-setting name='showFreqNumbers'>true</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <b:if cond='data:title != ""'>
+            <h3 class='widget-title'><data:title/></h3>
+          </b:if>
+          <div class='widget-content'>
+            <ul>
+              <b:loop values='data:labels' var='label'>
+                <li>
+                  <a expr:href='data:label.url'><data:label.name/> <b:if cond='data:this.showFreqNumbers'>(<data:label.count/>)</b:if></a>
+                </li>
+              </b:loop>
+            </ul>
+          </div>
+        </b:includable>
+      </b:widget>
+    </b:section>
+
+    <!-- FOOTER PRINCIPAL -->
+    <footer class='main-footer'>
+      <div class='footer-nav'>
+        <a expr:href='data:blog.homepageUrl'>Início</a>
+        <a href='/p/sobre-nos.html'>Sobre Nós</a>
+        <a href='/p/contactos.html'>Contactos</a>
+        <a href='/p/politica-de-privacidade.html'>Política de Privacidade</a>
+        <a href='/p/termos-de-uso.html'>Termos de Uso</a>
+      </div>
+      <p>© <data:blog.title/> — Todos os direitos reservados. Conteúdo original de culinária e gastronomia.</p>
+      <p style='margin-top:8px;font-size:0.8rem;'>Tema Cyber Dark • Plataforma de receitas reais</p>
+    </footer>
+
+  </div><!-- /.site-wrapper -->
+
+  <!-- FOOTER TICKER -->
+  <div class='footer-ticker'>
+    <div class='ticker-track'>
+      <span>© Cyber Culinária — Todos os direitos reservados</span>
+      <span>Últimas atualizações de receitas e técnicas de cozinha</span>
+      <span>Conteúdo original • Sem Lorem Ipsum • Fotos reais</span>
+      <span>Contacto oficial: 863582790</span>
+      <span>Bolos • Pratos Principais • Sobremesas • Entradas • Dicas Técnicas</span>
+      <span>Gastronomia com estilo cyber</span>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+  //<![CDATA[
+  (function() {
+    /* ===== PARTÍCULAS CAINDO ===== */
+    const canvas = document.getElementById('particles-canvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let w, h, particles = [];
+      const PARTICLE_COUNT = 60;
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      function createParticle() {
+        return {
+          x: Math.random() * w,
+          y: Math.random() * h - h,
+          r: Math.random() * 2.2 + 0.6,
+          speed: Math.random() * 1.2 + 0.3,
+          opacity: Math.random() * 0.5 + 0.2,
+          color: Math.random() > 0.6 ? '168,85,247' : (Math.random() > 0.5 ? '34,211,238' : '74,222,128')
+        };
+      }
+      for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(createParticle());
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        particles.forEach(p => {
+          p.y += p.speed;
+          if (p.y > h + 10) {
+            p.y = -10;
+            p.x = Math.random() * w;
+          }
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(' + p.color + ',' + p.opacity + ')';
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = 'rgba(' + p.color + ',0.8)';
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+    }
+
+    /* ===== ROTAÇÃO DE IMAGENS (fade a cada 2s) ===== */
+    function initImageRotation() {
+      document.querySelectorAll('.rotating-images[data-rotate]').forEach(container => {
+        const imgs = container.querySelectorAll('img');
+        if (imgs.length < 2) return;
+        let idx = 0;
+        setInterval(() => {
+          imgs[idx].classList.remove('active');
+          idx = (idx + 1) % imgs.length;
+          imgs[idx].classList.add('active');
+        }, 2000);
+      });
+    }
+    // Executa após DOM pronto
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initImageRotation);
+    } else {
+      initImageRotation();
+    }
+
+    /* ===== INFINITE SCROLL / LAZY LOAD ===== */
+    let isLoading = false;
+    const loader = document.getElementById('infinite-loader');
+    const olderLink = document.getElementById('older-link');
+    const container = document.getElementById('posts-container');
+
+    function loadMore() {
+      if (isLoading || !olderLink) return;
+      const url = olderLink.href;
+      if (!url) return;
+      isLoading = true;
+      if (loader) loader.classList.add('visible');
+
+      fetch(url)
+        .then(r => r.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const newPosts = doc.querySelectorAll('#posts-container .post-card');
+          const newOlder = doc.querySelector('#older-link');
+          if (container && newPosts.length) {
+            newPosts.forEach(p => container.appendChild(p));
+            initImageRotation();
+          }
+          if (newOlder && olderLink) {
+            olderLink.href = newOlder.href;
+          } else if (olderLink) {
+            olderLink.style.display = 'none';
+          }
+          isLoading = false;
+          if (loader) loader.classList.remove('visible');
+        })
+        .catch(() => {
+          isLoading = false;
+          if (loader) loader.classList.remove('visible');
+        });
+    }
+
+    window.addEventListener('scroll', () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 400) {
+        loadMore();
+      }
+    });
+
+    /* ===== MARQUEE pause on hover (opcional) ===== */
+    document.querySelectorAll('.header-ticker, .footer-ticker').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        const track = el.querySelector('.ticker-track');
+        if (track) track.style.animationPlayState = 'paused';
+      });
+      el.addEventListener('mouseleave', () => {
+        const track = el.querySelector('.ticker-track');
+        if (track) track.style.animationPlayState = 'running';
+      });
+    });
+  })();
+  //]]>
+  </script>
+
+</body>
+</html>
